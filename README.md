@@ -1,4 +1,4 @@
-# 腾讯优量汇广告 Flutter版本
+# 快手联盟广告sdk Flutter版本
 
 ## 简介
   ks_ads_flutter是一款集成了快手联盟广告sdk的Flutter插件,目前仅支持iOS端部分功能，剩余功能和Android端正在开发
