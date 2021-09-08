@@ -1,0 +1,29 @@
+PODS:
+  - Flutter (1.0.0)
+  - ks_ads_flutter (0.0.1):
+    - Flutter
+    - KSAdSDK
+  - KSAdSDK (3.3.15)
+
+DEPENDENCIES:
+  - Flutter (from `Flutter`)
+  - ks_ads_flutter (from `.symlinks/plugins/ks_ads_flutter/ios`)
+
+SPEC REPOS:
+  trunk:
+    - KSAdSDK
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: Flutter
+  ks_ads_flutter:
+    :path: ".symlinks/plugins/ks_ads_flutter/ios"
+
+SPEC CHECKSUMS:
+  Flutter: 434fef37c0980e73bb6479ef766c45957d4b510c
+  ks_ads_flutter: 4b3df61eada6722ac41a57aa48f2c8f570052461
+  KSAdSDK: a63807f57cb01a693bdd102353d4829555e6e66a
+
+PODFILE CHECKSUM: 8e679eca47255a8ca8067c4c67aab20e64cb974d
+
+COCOAPODS: 1.10.2
