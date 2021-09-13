@@ -33,38 +33,39 @@ await KsAdsFlutter.sdkVersion;
 ```
 #### 3、激励视频
 ```Dart
-KsAdsFlutter.rewardVideoView(
-        context: context,
-        placementId: '你的广告位ID',
-        videoMuted: true,
-        callback: RewardVideoCallback(
-          onLoad: () {
-            print('onLoad');
-          },
-          onFail: (error) {
-            print('$error');
-          },
-          onShow: () {
-            print('onShow');
-          },
-          onClick: () {
-            print('onClick');
-          },
-          onFinish: () {
-            print('onFinish');
-          },
-          onClose: () {
-            print('onClose');
-            Navigator.pop(context);
-          },
-          onReward: () {
-            print('onReward');
-          },
-          onSkip: () {
-            print('onSkip');
-          },
-        ),
-      ),
+///预加载激励视频
+KsAdsFlutter.loadAndShowRewardVideo(posId: 'posId');
+
+///播放激励视频
+KsAdsFlutter.showReardVideo();
+
+///设置激励视频监听
+StreamSubscription _adStream = KsAdsFlutter.initRewardStream(KsRewardVideoCallback(
+      onLoad: () {
+        print('onLoad');
+      },
+      onFail: (error) {
+        print('$error');
+      },
+      onShow: () {
+        print('onShow');
+      },
+      onClick: () {
+        print('onClick');
+      },
+      onFinish: () {
+        print('onFinish');
+      },
+      onClose: () {
+        print('onClose');
+      },
+      onReward: () {
+        print('onReward');
+      },
+      onSkip: () {
+        print('onSkip');
+      },
+    ));
 ```
 
 ## 联系方式

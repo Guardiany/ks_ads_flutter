@@ -62,7 +62,7 @@ class SplashViewCallback {
 }
 
 ///激励广告回调
-class RewardVideoCallback {
+class KsRewardVideoCallback {
 
   OnLoad? onLoad;
   OnShow? onShow;
@@ -73,7 +73,7 @@ class RewardVideoCallback {
   OnReward? onReward;
   OnSkip? onSkip;
 
-  RewardVideoCallback({
+  KsRewardVideoCallback({
     this.onLoad,
     this.onClose,
     this.onFinish,

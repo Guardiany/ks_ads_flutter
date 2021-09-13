@@ -1,6 +1,10 @@
 #import "KsAdsFlutterPlugin.h"
 #import <KSAdSDK/KSAdSDK.h>
 #import "RewardVideoViewFactory.h"
+#import "KsRewardVideo.h"
+#import "KsFlutterEvent.h"
+
+KsFlutterEvent *ad_event;
 
 @implementation KsAdsFlutterPlugin
 + (void)registerWithRegistrar:(NSObject<FlutterPluginRegistrar>*)registrar {
@@ -10,6 +14,7 @@
   KsAdsFlutterPlugin* instance = [[KsAdsFlutterPlugin alloc] init];
   [registrar addMethodCallDelegate:instance channel:channel];
   [registrar registerViewFactory:[[RewardVideoViewFactory alloc] initWithMessenger:registrar.messenger] withId:@"com.ahd.ks_ads.reward_video"];
+  ad_event = [[KsFlutterEvent alloc] initWithRegistrar:registrar];
 }
 
 - (void)handleMethodCall:(FlutterMethodCall*)call result:(FlutterResult)result {
@@ -24,6 +29,18 @@
         NSString *appId = [map valueForKey:@"appId"];
         [KSAdSDKManager setAppId:appId];
         result([NSNumber numberWithBool:true]);
+    }
+    if ([@"loadAndShowRewardVideo" isEqualToString:call.method]) {
+        [[KsRewardVideo instance] loadAndShowRewardVideo:call.arguments];
+        result(nil);
+    }
+    if ([@"loadRewardVideo" isEqualToString:call.method]) {
+        [[KsRewardVideo instance] loadRewardVideoWithArgs:call.arguments];
+        result(nil);
+    }
+    if ([@"showRewardVideo" isEqualToString:call.method]) {
+        [[KsRewardVideo instance] showRewardVideo];
+        result(nil);
     }
     else {
         result(FlutterMethodNotImplemented);

@@ -18,7 +18,7 @@ class _RewardVideoViewPageState extends State<RewardVideoViewPage> {
         context: context,
         placementId: '4072435033794278',
         videoMuted: true,
-        callback: RewardVideoCallback(
+        callback: KsRewardVideoCallback(
           onLoad: () {
             print('onLoad');
           },

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 
 import 'package:flutter/services.dart';
+import 'package:ks_ads_flutter/ks_ads_callback.dart';
 import 'package:ks_ads_flutter/ks_ads_flutter.dart';
-import 'package:ks_ads_flutter_example/reward_video_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -37,15 +37,43 @@ class _HomePageState extends State<HomePage> {
   String _sdkVersion = 'Unknown';
   bool? _registerResult;
 
+  StreamSubscription? _adStream;
+
   @override
   void initState() {
     super.initState();
     initPlatformState();
     _initSdk();
+    _adStream = KsAdsFlutter.initRewardStream(KsRewardVideoCallback(
+      onLoad: () {
+        print('onLoad');
+      },
+      onFail: (error) {
+        print('$error');
+      },
+      onShow: () {
+        print('onShow');
+      },
+      onClick: () {
+        print('onClick');
+      },
+      onFinish: () {
+        print('onFinish');
+      },
+      onClose: () {
+        print('onClose');
+      },
+      onReward: () {
+        print('onReward');
+      },
+      onSkip: () {
+        print('onSkip');
+      },
+    ));
   }
 
   _initSdk() async {
-    _registerResult = await KsAdsFlutter.register(iosAppId: '1200064850');
+    _registerResult = await KsAdsFlutter.register(iosAppId: '561000005');
     setState(() {});
   }
 
@@ -84,19 +112,18 @@ class _HomePageState extends State<HomePage> {
             Text('Running on: $_platformVersion\nSdk Version: $_sdkVersion'),
             Text('${_registerResult == null ? '等待初始化sdk' : _registerResult! ? 'sdk初始化成功' : 'sdk初始化失败'}'),
             Padding(padding: EdgeInsets.only(top: 15)),
-            // TextButton(onPressed: () {
-            //   Navigator.push(context, MaterialPageRoute(builder: (con) {
-            //     return SplashViewPage();
-            //   }));
-            // }, child: Text('开屏广告', style: TextStyle(fontSize: 18),),),
             TextButton(onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (con) {
-                return RewardVideoViewPage();
-              }));
+              KsAdsFlutter.loadAndShowRewardVideo(posId: '5610000005', isShowLog: true,);
             }, child: Text('激励视频', style: TextStyle(fontSize: 18),),),
           ],
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _adStream?.cancel();
   }
 }

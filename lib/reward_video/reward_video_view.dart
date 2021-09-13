@@ -21,7 +21,7 @@ class RewardVideoView extends StatefulWidget {
   final String placementId;
   final bool isShowLog;
   final bool videoMuted;
-  final RewardVideoCallback? callback;
+  final KsRewardVideoCallback? callback;
 
   @override
   _RewardVideoViewState createState() => _RewardVideoViewState();
