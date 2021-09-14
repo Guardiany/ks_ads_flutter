@@ -37,11 +37,11 @@ allprojects {
 ```
 dependencies {
     // 快⼿SDK aar包，请将提供的aar包拷⻉到libs⽬录下，添加依赖。根据接⼊版本修改SDK包名
-    implementation files('libs/ks_adsdk_x.y.z.aar')
+    implementation files('libs/kssdk-ad--3.3.15-publishRelease-4533d8764.aar')
     def version = "1.3.1"
     // supprot库依赖，SDK内部依赖如下support，请确保添加
     implementation "androidx.appcompat:appcompat:$version"
-    implementation "androidx.recyclerview:recyclerview:1.0.0"
+    implementation "androidx.recyclerview:recyclerview:1.2.0"
 }
 ```
 权限和其他配置请查阅[官方文档](https://static.yximgs.com/udata/pkg/KS-Android-KSAdSDk/doc/4701b963d40a77bc0f45fd71d30b57da44.pdf)

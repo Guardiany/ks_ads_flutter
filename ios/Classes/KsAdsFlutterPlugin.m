@@ -28,6 +28,7 @@ KsFlutterEvent *ad_event;
         NSDictionary *map = call.arguments;
         NSString *appId = [map valueForKey:@"appId"];
         [KSAdSDKManager setAppId:appId];
+        [KSAdSDKManager setLoglevel:KSAdSDKLogLevelOff];
         result([NSNumber numberWithBool:true]);
     }
     if ([@"loadAndShowRewardVideo" isEqualToString:call.method]) {

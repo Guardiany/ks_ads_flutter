@@ -7,7 +7,7 @@
 
 #import <Foundation/Foundation.h>
 #import <Flutter/Flutter.h>
-#import "../KsFlutterEvent.h"
+#import "KsFlutterEvent.h"
 
 @interface KsRewardVideo : NSObject
 

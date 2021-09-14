@@ -21,30 +21,29 @@ class KsAdsFlutter {
     return await _channel.invokeMethod('getSdkVersion');
   }
 
-  static Future<bool?> register({
+  static Future<bool> register({
     required String iosAppId,
     required String androidAppId,
     required String appName,
     bool isShowLog = false,
   }) async {
-    final bool? result = await _channel.invokeMethod('register', {
+    return await _channel.invokeMethod('register', {
       'appId': iosAppId,
       'androidAppId': androidAppId,
       'appName': appName,
       'isShowLog': isShowLog,
     });
-    return result;
   }
 
   ///预加载激励视频
   static void loadRewardVideo({
-    required String posId,
+    required String iosPosId,
     bool isShowLog = false,
     ///设置激励视频是否静音
     bool videoMuted = false,
   }) {
     _channel.invokeMethod('loadRewardVideo', {
-      'posId': posId,
+      'posId': iosPosId,
       'isShowLog': isShowLog,
       'videoMuted': videoMuted,
     });
