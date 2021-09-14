@@ -49,7 +49,7 @@ class _HomePageState extends State<HomePage> {
         print('onLoad');
       },
       onFail: (error) {
-        print('$error');
+        print('error: $error');
       },
       onShow: () {
         print('onShow');
@@ -73,7 +73,11 @@ class _HomePageState extends State<HomePage> {
   }
 
   _initSdk() async {
-    _registerResult = await KsAdsFlutter.register(iosAppId: '561000005');
+    _registerResult = await KsAdsFlutter.register(
+      iosAppId: '561000005',
+      androidAppId: '561000009',
+      appName: '123456',
+    );
     setState(() {});
   }
 
@@ -103,7 +107,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Plugin example app'),
+        title: const Text('快手联盟广告Flutter'),
       ),
       body: Center(
         child: Column(
@@ -113,8 +117,11 @@ class _HomePageState extends State<HomePage> {
             Text('${_registerResult == null ? '等待初始化sdk' : _registerResult! ? 'sdk初始化成功' : 'sdk初始化失败'}'),
             Padding(padding: EdgeInsets.only(top: 15)),
             TextButton(onPressed: () {
-              KsAdsFlutter.loadAndShowRewardVideo(posId: '5610000005', isShowLog: true,);
-            }, child: Text('激励视频', style: TextStyle(fontSize: 18),),),
+              KsAdsFlutter.loadRewardVideo(posId: '5610000009');
+            }, child: Text('加载激励视频', style: TextStyle(fontSize: 18),),),
+            TextButton(onPressed: () {
+              KsAdsFlutter.showReardVideo();
+            }, child: Text('播放激励视频', style: TextStyle(fontSize: 18),),),
           ],
         ),
       ),

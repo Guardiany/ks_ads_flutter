@@ -1,7 +1,7 @@
 # 快手联盟广告sdk Flutter版本
 
 ## 简介
-  ks_ads_flutter是一款集成了快手联盟广告sdk的Flutter插件,目前仅支持iOS端部分功能，剩余功能和Android端正在开发
+  ks_ads_flutter是一款集成了快手联盟广告sdk的Flutter插件,目前仅支持显示激励视频功能，剩余功能正在开发
 
 ## 官方文档
 * [Android](https://static.yximgs.com/udata/pkg/KS-Android-KSAdSDk/doc/4701b963d40a77bc0f45fd71d30b57da44.pdf)
@@ -21,11 +21,40 @@ SDK最新版本已配置插件中，其余根据SDK文档配置，在Info.plist�
     <true/>
 ```
 
+#### 3、Android
+去官网[下载SDK](https://u.kuaishou.com/access)
+请解压提供的⼴告SDK，在压缩包中找到ks_adsdk_xxx.aar
+找到您的App⼯程下的libs⽂件夹，将上⾯的aar拷⻉到该⽬录下
+在app的build.gradle⽂件中添加如下依赖:
+```
+allprojects {
+    repositories {
+        //本地⽂件仓库依赖
+        flatDir { dirs 'libs'}
+    }
+}
+```
+```
+dependencies {
+    // 快⼿SDK aar包，请将提供的aar包拷⻉到libs⽬录下，添加依赖。根据接⼊版本修改SDK包名
+    implementation files('libs/ks_adsdk_x.y.z.aar')
+    def version = "1.3.1"
+    // supprot库依赖，SDK内部依赖如下support，请确保添加
+    implementation "androidx.appcompat:appcompat:$version"
+    implementation "androidx.recyclerview:recyclerview:1.0.0"
+}
+```
+权限和其他配置请查阅[官方文档](https://static.yximgs.com/udata/pkg/KS-Android-KSAdSDk/doc/4701b963d40a77bc0f45fd71d30b57da44.pdf)
+
 ## 使用
 
 #### 1、SDK初始化
 ```Dart
-await KsAdsFlutter.register(iosAppId: '你的appID');
+_registerResult = await KsAdsFlutter.register(
+      iosAppId: '你的苹果appID',
+      androidAppId: '你的Android appID',
+      appName: '你的app名',
+    );
 ```
 #### 2、获取SDK版本
 ```Dart
@@ -34,7 +63,7 @@ await KsAdsFlutter.sdkVersion;
 #### 3、激励视频
 ```Dart
 ///预加载激励视频
-KsAdsFlutter.loadAndShowRewardVideo(posId: 'posId');
+KsAdsFlutter.loadRewardVideo(posId: '你的posId');
 
 ///播放激励视频
 KsAdsFlutter.showReardVideo();
@@ -45,7 +74,7 @@ StreamSubscription _adStream = KsAdsFlutter.initRewardStream(KsRewardVideoCallba
         print('onLoad');
       },
       onFail: (error) {
-        print('$error');
+        print('error: $error');
       },
       onShow: () {
         print('onShow');

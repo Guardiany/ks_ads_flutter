@@ -23,8 +23,16 @@ class KsAdsFlutter {
 
   static Future<bool?> register({
     required String iosAppId,
+    required String androidAppId,
+    required String appName,
+    bool isShowLog = false,
   }) async {
-    final bool? result = await _channel.invokeMethod('register', {'appId': iosAppId});
+    final bool? result = await _channel.invokeMethod('register', {
+      'appId': iosAppId,
+      'androidAppId': androidAppId,
+      'appName': appName,
+      'isShowLog': isShowLog,
+    });
     return result;
   }
 

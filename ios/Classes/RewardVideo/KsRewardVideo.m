@@ -152,4 +152,12 @@
     [ad_event sendEvent:result];
 }
 
+- (void)rewardedVideoAd:(KSRewardedVideoAd *)rewardedVideoAd hasReward:(BOOL)hasReward {
+    if (hasReward) {
+        [self showDebugLog:@"奖励达成"];
+        NSDictionary *result = [[NSDictionary alloc] initWithObjectsAndKeys:@"rewardAd", @"adType", @"onReward", @"method", nil];
+        [ad_event sendEvent:result];
+    }
+}
+
 @end
