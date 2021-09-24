@@ -25,7 +25,6 @@ public class KsAdsFlutterPlugin implements FlutterPlugin, MethodCallHandler, Act
   private MethodChannel channel;
   private Context appContext;
   private Activity mActivity;
-  private String appId;
 
   @Override
   public void onAttachedToEngine(@NonNull FlutterPluginBinding flutterPluginBinding) {
@@ -53,13 +52,14 @@ public class KsAdsFlutterPlugin implements FlutterPlugin, MethodCallHandler, Act
                 appContext,
                 new SdkConfig.Builder().appId(appId).appName(appName).showNotification(true).debug(isShowLog).build()
         );
-        if (initResult) {
-          this.appId = appId;
-        }
         result.success(initResult);
         break;
       case "loadRewardVideo":
-        KsRewardVideo.getInstance().loadRewardVideo(Integer.parseInt(this.appId));
+        String posId = call.argument("androidPosId");
+        if (posId == null) {
+          break;
+        }
+        KsRewardVideo.getInstance().loadRewardVideo(Long.parseLong(posId));
         result.success(null);
         break;
       case "showRewardVideo":

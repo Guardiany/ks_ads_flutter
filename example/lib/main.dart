@@ -117,7 +117,7 @@ class _HomePageState extends State<HomePage> {
             Text('${_registerResult == null ? '等待初始化sdk' : _registerResult! ? 'sdk初始化成功' : 'sdk初始化失败'}'),
             Padding(padding: EdgeInsets.only(top: 15)),
             TextButton(onPressed: () {
-              KsAdsFlutter.loadRewardVideo(iosPosId: '5610000009');
+              KsAdsFlutter.loadRewardVideo(iosPosId: '5610000009', isShowLog: true, androidPosId: '');
             }, child: Text('加载激励视频', style: TextStyle(fontSize: 18),),),
             TextButton(onPressed: () {
               KsAdsFlutter.showReardVideo();

@@ -21,25 +21,25 @@ KsFlutterEvent *ad_event;
     if ([@"getPlatformVersion" isEqualToString:call.method]) {
         result([@"iOS " stringByAppendingString:[[UIDevice currentDevice] systemVersion]]);
     }
-    if ([@"getSdkVersion" isEqualToString:call.method]) {
+    else if ([@"getSdkVersion" isEqualToString:call.method]) {
         result(KSAdSDKManager.SDKVersion);
     }
-    if ([@"register" isEqualToString:call.method]) {
+    else if ([@"register" isEqualToString:call.method]) {
         NSDictionary *map = call.arguments;
         NSString *appId = [map valueForKey:@"appId"];
         [KSAdSDKManager setAppId:appId];
         [KSAdSDKManager setLoglevel:KSAdSDKLogLevelOff];
         result([NSNumber numberWithBool:true]);
     }
-    if ([@"loadAndShowRewardVideo" isEqualToString:call.method]) {
+    else if ([@"loadAndShowRewardVideo" isEqualToString:call.method]) {
         [[KsRewardVideo instance] loadAndShowRewardVideo:call.arguments];
         result(nil);
     }
-    if ([@"loadRewardVideo" isEqualToString:call.method]) {
+    else if ([@"loadRewardVideo" isEqualToString:call.method]) {
         [[KsRewardVideo instance] loadRewardVideoWithArgs:call.arguments];
         result(nil);
     }
-    if ([@"showRewardVideo" isEqualToString:call.method]) {
+    else if ([@"showRewardVideo" isEqualToString:call.method]) {
         [[KsRewardVideo instance] showRewardVideo];
         result(nil);
     }

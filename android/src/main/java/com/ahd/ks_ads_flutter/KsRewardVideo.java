@@ -32,7 +32,7 @@ public class KsRewardVideo {
         isShowLog = showLog;
     }
 
-    public void loadRewardVideo(int posId) {
+    public void loadRewardVideo(long posId) {
         KsLoadManager loadManager = KsAdSDK.getLoadManager();
         KsScene scene = new KsScene.Builder(posId).build();
         loadManager.loadRewardVideoAd(scene, new KsLoadManager.RewardVideoAdListener() {

@@ -38,12 +38,14 @@ class KsAdsFlutter {
   ///预加载激励视频
   static void loadRewardVideo({
     required String iosPosId,
+    required String androidPosId,
     bool isShowLog = false,
     ///设置激励视频是否静音
     bool videoMuted = false,
   }) {
     _channel.invokeMethod('loadRewardVideo', {
       'posId': iosPosId,
+      'androidPosId':androidPosId,
       'isShowLog': isShowLog,
       'videoMuted': videoMuted,
     });
